@@ -1,5 +1,0 @@
-/vendor
-composer.lock
-
-/tests/_output
-/tests/unit/UnitTester.php
