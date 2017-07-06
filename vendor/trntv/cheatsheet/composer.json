@@ -1,0 +1,17 @@
+{
+  "name": "trntv/cheatsheet",
+  "type": "library",
+  "description": "Cheat sheet of knowledge you may use in your code",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Eugene Terentev",
+      "email": "eugene@terentev.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "cheatsheet\\": "src/"
+    }
+  }
+}

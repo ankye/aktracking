@@ -1,0 +1,25 @@
+{
+    "name": "pavlinter/yii2-buttons",
+    "description": "Yii2: Buttons",
+    "keywords": ["yii2", "button", "ajax", "redirect", "ajaxbutton", "redirectbutton", "inputbutton"],
+    "type": "yii2-extension",
+    "license": "BSD 3-Clause",
+    "support": {
+        "issues": "https://github.com/pavlinter/yii2-buttons/issues",
+        "source": "https://github.com/pavlinter/yii2-buttons"
+    },
+    "authors": [
+        {
+            "name": "Pavels Radajevs",
+            "email": "pavlinter@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "pavlinter\\": ""
+        }
+    }
+}
