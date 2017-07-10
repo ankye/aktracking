@@ -1,10 +1,7 @@
 <?php
 return [
     'class' => yii\web\UrlManager::class,
-    'enablePrettyUrl' => true,
+    'enablePrettyUrl' => false,
     'showScriptName' => false,
-    'rules' => [
-        ['pattern'=>'/tracking/<slug>', 'route'=>'/tracking/slug'],
 
-    ]
 ];
