@@ -134,7 +134,8 @@ $this->params['breadcrumbs'][] = Yii::t('tracking', 'Overview');
                     <div class="col-xs-8 text-right">
                         <h2 class="font-bold" id="net_overview">
                             <?php
-                            echo Yii::$app->formatter->asCurrency($income -$cost,'USD');
+                            echo \common\helpers\Util::moneyFormat($income -$cost); 
+                      // echo Yii::$app->formatter->asCurrency($income -$cost,'USD');
                             ?>
                         </h2>
                     </div>
@@ -426,7 +427,8 @@ $this->params['breadcrumbs'][] = Yii::t('tracking', 'Overview');
                     'header' => 'Profit',
                     'content' => function ($model, $key, $index, $column){
                         $value = $model['net'];
-                        $result = Yii::$app->formatter->asCurrency($value,'USD');
+
+                        $result =\common\helpers\Util::moneyFormat($value); //Yii::$app->formatter->asCurrency($value,'USD');
                         $style = Yii::$app->keyStorage->get("backend.table-profit-color");
                         if($value<0){
                             if($style == 'table_green'){

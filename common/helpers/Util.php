@@ -123,5 +123,10 @@ class Util
         return $ua;
     }
 
+    public static function moneyFormat($value)
+    {
+        setlocale(LC_MONETARY, 'en_US');
+        return money_format('%+n', $value);
+    }
 
 }
