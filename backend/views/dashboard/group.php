@@ -165,7 +165,7 @@ $this->params['breadcrumbs'][] = Yii::t('tracking', 'Group Overview');
                     'pluginEvents' => [
                         "change" => 'function(){
                      $.pjax.reload({
-                    url: "'.Url::to(['/dashboard/group']).'?sourceID="+$(this).val(),
+                    url: "'.Url::to(['/dashboard/group']).'&sourceID="+$(this).val(),
                     container: "#pjax-memfeature-form",
                     timeout: 1000,
                     });

@@ -165,7 +165,7 @@ if($msg != ""){
                     'pluginEvents' => [
                         "change" => 'function(){
                      $.pjax.reload({
-                    url: "'.Url::to(['/dashboard/dayparting']).'?sourceID="+$(this).val(),
+                    url: "'.Url::to(['/dashboard/dayparting']).'&sourceID="+$(this).val(),
                     container: "#pjax-memfeature-form",
                     timeout: 1000,
                     });
