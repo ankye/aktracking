@@ -7,6 +7,7 @@ namespace frontend\controllers;
 use backend\models\Click;
 use common\helpers\Util;
 use backend\models\Campaign;
+use yii\base\InvalidValueException;
 
 class PingbackController extends \yii\web\Controller
 {
@@ -19,13 +20,17 @@ class PingbackController extends \yii\web\Controller
             try {
 
                 $click = Click::findOne(['id'=>$aff_sub]);
+                if(!isset($click)){
+
+                    throw new InvalidValueException('aff_sub exception.');
+                }
                 $click->conversion_at = date("Y/m/d H:i:s");
                 $click->isconversion = 1;
                 $click->pingbackIP = Util::getIP();
                 $click->pingbackIPINT = ip2long($click->pingbackIP);
                 $pid = $click->pid;
                 if(!$click->save(false)){
-                    $transaction->rollBack();
+                    throw new InvalidValueException('click save exception.');
                 }
                 while($pid > 0){
                     $pClick = Click::findOne(['id'=>$pid]);
@@ -36,7 +41,8 @@ class PingbackController extends \yii\web\Controller
                     $pClick->payout = $click->payout;
                     $pid = $pClick->pid;
                     if(!$pClick->save(false)){
-                        $transaction->rollBack();
+                        throw new InvalidValueException('click save exception.');
+
                     }
                 }
                 $transaction->commit();
@@ -50,7 +56,8 @@ class PingbackController extends \yii\web\Controller
                     file_get_contents($pingback);
                 }
                 echo "update success";
-            } catch (Exception $e) {
+            } catch (InvalidValueException $e) {
+
                 $transaction->rollBack();
             }
 

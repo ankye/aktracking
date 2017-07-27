@@ -412,7 +412,7 @@ $this->params['breadcrumbs'][] = Yii::t('tracking', 'Campaign Analyze');
 
                 [
                     'attribute'=>'net',
-                    'header' => 'NET',
+                    'header' => 'Profit',
                     'content' => function ($model, $key, $index, $column){
                         $value = $model['net'];
                         $result = Yii::$app->formatter->asCurrency($value,'USD');
