@@ -1,7 +1,7 @@
 <?php
 return [
     'class' => yii\web\UrlManager::class,
-    'enablePrettyUrl' => false,
+    'enablePrettyUrl' => true,
     'showScriptName' => false,
 
 ];
