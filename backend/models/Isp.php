@@ -51,6 +51,11 @@ class Isp extends \yii\db\ActiveRecord
         return $items;
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->cache->delete(['ispList']);
+    }
     public static function dropDownSubItems($country)
     {
 

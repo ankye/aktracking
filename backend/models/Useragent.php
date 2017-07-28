@@ -60,6 +60,12 @@ class Useragent extends \yii\db\ActiveRecord
         }
         return $items;
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->cache->delete(['useragentList']);
+    }
     /**
      * @inheritdoc
      * @return UseragentQuery the active query used by this AR class.

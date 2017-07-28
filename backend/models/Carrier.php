@@ -63,6 +63,12 @@ class Carrier extends \yii\db\ActiveRecord
         return $items;
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->cache->delete(['carrierList']);
+    }
+
     public static function dropDownSubItems($country)
     {
 

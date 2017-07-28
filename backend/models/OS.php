@@ -60,7 +60,11 @@ class OS extends \yii\db\ActiveRecord
         }
         return $items;
     }
-
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->cache->delete(['osList']);
+    }
     /**
      * @inheritdoc
      * @return OSQuery the active query used by this AR class.

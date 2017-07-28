@@ -66,6 +66,12 @@ class Country extends \yii\db\ActiveRecord
         }
         return $items;
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->cache->delete(['countryList']);
+    }
     /**
      * @inheritdoc
      * @return CountryQuery the active query used by this AR class.

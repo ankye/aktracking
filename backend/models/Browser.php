@@ -60,6 +60,12 @@ class Browser extends \yii\db\ActiveRecord
         }
         return $items;
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->cache->delete(['browserList']);
+    }
     /**
      * @inheritdoc
      * @return BrowserQuery the active query used by this AR class.
