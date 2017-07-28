@@ -43,7 +43,7 @@ use kartik\select2\Select2;
 
         </div><!-- .row -->
 
-        <?= $form->field($model, "redirectUrl")->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, "redirectUrl")->textInput(['maxlength' => true])->label("Offer Url {aff_sub}") ?>
 
 
 

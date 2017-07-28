@@ -346,12 +346,14 @@ class ClickController extends \yii\web\Controller
     public function  go($location,$out=null){
         $arr = parse_url($location);
 
-	    if(isset($arr["query"])){
-            $location = $location."&".Yii::$app->request->queryString;
-        }else{
-            $location = $location."?".Yii::$app->request->queryString;
-        }
+
         if($out){
+            if(isset($arr["query"])){
+                $location = $location."&".Yii::$app->request->queryString;
+            }else{
+                $location = $location."?".Yii::$app->request->queryString;
+            }
+
 	        $location = $location."&out=".base64_encode(json_encode($out));
         }
       
