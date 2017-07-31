@@ -125,16 +125,7 @@ $this->params['breadcrumbs'][] = Yii::t('tracking', 'Campaign Analyze');
 
                     'name' => 'range',
                     'value'=> isset($range)?$range:'',
-                    'data' => ["today"=>"Today",
-                        "yesterday"=>"Yesterday",
-                        "last7"=>"Last 7 Days",
-                        "last14"=>"Last 14 Days",
-                        "last30"=>"Last 30 Days",
-                        "thismonth"=>"This Month",
-                        "lastmonth"=>"Last Month",
-                        "thisyear"=>"This Year",
-                        "lastyear"=>"Last Year",
-                        "alltime"=>"All Time",],
+                    'data' => \common\helpers\Common::customDateRange(),
                     'options' => ['placeholder' => 'Date Range'],
                     'pluginEvents' => [
                         "change" => 'function(){

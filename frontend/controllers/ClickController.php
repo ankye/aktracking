@@ -348,6 +348,7 @@ class ClickController extends \yii\web\Controller
 
 
         if($out){
+
             if(isset($arr["query"])){
                 $location = $location."&".Yii::$app->request->queryString;
             }else{

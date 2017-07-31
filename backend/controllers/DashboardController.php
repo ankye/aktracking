@@ -58,26 +58,67 @@ class DashboardController extends Controller
     }
     protected  function doParams()
     {
-        $startTime = strtotime("-1 week");
-        $obj = Yii::$app->request->cookies->get("startTime", strtotime("-1 week"));
+        $obj = Yii::$app->request->cookies->get("range");
+        $range = "last7";
         if($obj){
-            $startTime = $obj->value;
+            $range = $obj->value;
         }
-        $endTime = time();
-        $obj = Yii::$app->request->cookies->get("endTime",time());
-        if($obj){
-            $endTime = $obj->value;
+
+        //process data range
+
+        if($range == "today"){
+            $startTime = date('Y/m/d')." 00:00:00";
+            $endTime = date('Y/m/d', strtotime("+1 day"))." 00:00:00";
+        }else if($range == "yesterday"){
+            $startTime = date('Y/m/d', strtotime("-1 day"))." 00:00:00";
+            $endTime = date('Y/m/d')." 00:00:00";
+        }else if($range == "last7"){
+            $startTime = date('Y/m/d', strtotime("-1 week"))." 00:00:00";
+            $endTime = date('Y/m/d', strtotime("+1 day"))." 00:00:00";
+        }else if($range == "last14"){
+            $startTime = date('Y/m/d', strtotime("-2 week"))." 00:00:00";
+            $endTime = date('Y/m/d', strtotime("+1 day"))." 00:00:00";
+        }else if($range == "last30"){
+            $startTime = date('Y/m/d', strtotime("-30 day"))." 00:00:00";
+            $endTime = date('Y/m/d', strtotime("+1 day"))." 00:00:00";
+        }else if($range == "thismonth"){
+            $startTime = date('Y/m', strtotime("+0 day"))."/01 00:00:00";
+            $endTime = date('Y/m/d', strtotime("+1 day"))." 00:00:00";
+        }else if($range == "lastmonth"){
+            $startTime = date('Y/m', strtotime("-1 month"))."/01 00:00:00";
+            $endTime = date('Y/m', strtotime("+0 day"))."/01 00:00:00";
+        }else if($range == "thisyear"){
+            $startTime = date('Y', strtotime("+0 day"))."/01/01 00:00:00";
+            $endTime = date('Y/m/d', strtotime("+1 day"))." 00:00:00";
+        }else if($range == "lastyear"){
+            $startTime = date('Y', strtotime("-1 year"))."/01/01 00:00:00";
+            $endTime = date('Y', strtotime("+0 day"))."/01/01 00:00:00";
+        }else if($range == "alltime"){
+            $startTime = date('Y/m/d', strtotime("-5 year"))." 00:00:00";
+            $endTime = date('Y/m/d', strtotime("+1 day"))." 00:00:00";
+        }else{
+            $startTime = date('Y/m/d')." 00:00:00";
+            $obj = Yii::$app->request->cookies->get("startTime");
+            if($obj){
+                $startTime = date("Y/m/d H:i:s",$obj->value);
+            }
+
+            $endTime = date('Y/m/d', strtotime("+1 day"))." 00:00:00";
+            $obj = Yii::$app->request->cookies->get("endTime");
+            if($obj){
+                $endTime = date("Y/m/d H:i:s",$obj->value);
+            }
         }
+
+        $startTime = strtotime($startTime);
+        $endTime = strtotime($endTime);
+
         $lpoffer = 1;
-        $obj = Yii::$app->request->cookies->get("lpoffer",1);
+        $obj = Yii::$app->request->cookies->get("lpoffer");
         if($obj){
             $lpoffer =$obj->value;
         }
-        $range = "last7";
-        $obj = Yii::$app->request->cookies->get("range","last7");
-        if($obj){
-            $range =  $obj->value;
-        }
+
 
 
         if(Yii::$app->request->isPost){
