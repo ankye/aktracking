@@ -27,14 +27,14 @@ $js = '
 function onChangeType(i,value){
     
     main =  $("#redirect-"+i+"-redirecttype").val(); 
-    $.getJSON("'.Url::to('type').'?i="+i+"&main="+main+"&type="+value+"",{},function(obj){
+    $.getJSON("'.Url::to('/admin/index.php?r=campaign/type').'&i="+i+"&main="+main+"&type="+value+"",{},function(obj){
         $("#redirect-"+obj["id"]+"-subtype").html(obj["html"]);
     });
   
 }
 function onChangeRedirectType(i,value){
 
-  $.getJSON("'.Url::to('redirecttype').'?i="+i+"&value="+value+"",{},function(obj){
+  $.getJSON("'.Url::to('/admin/index.php?r=campaign/redirecttype').'&i="+i+"&value="+value+"",{},function(obj){
      $("#redirect-"+obj["id"]+"-type").html(obj["html"]);
      $("#redirect-"+obj["id"]+"-opt").html(obj["opt"]);
   });
